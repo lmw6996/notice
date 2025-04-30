@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="/main.css" rel="stylesheet">
+</head>
+<body class="grey-bg">
+
+    <%- include('nav.ejs') %>
+    <div class="detail-bg">
+        <h4><%= result.title %></h4>
+        <p><%= result.content %></p>
+        <img src="<%= result.img %>">
+        
+        <a href="/chat/request?writerId=<%= result.user %>">채팅하기</a>
+
+        <hr style="margin-top: 60px">
+        <% for (let i=0; i<result2.length; i++){ %>
+        <div>
+            <p><strong><%= result2[i].writer %></strong> <%= result2[i].content %></p>
+        </div>
+        <% } %>
+        <form action="/comment" method="POST">
+            <input name="content">
+            <input name="parentId" value="<%= result._id %>" style="display: none">
+            <button type="submit">댓글작성</button>
+        </form>
+    </div> 
+
+</body>
+</html>
